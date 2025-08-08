@@ -1,0 +1,142 @@
+// ===============================
+// 📌 JavaScript Arrays - Complete Guide with Explanations & Outputs
+// ===============================
+
+// 1️⃣ Array Creation
+// Arrays can be created in different ways:
+let arr1 = [1, 2, 3];                  // Literal syntax
+let arr2 = new Array(4, 5, 6);          // Using new Array()
+let arr3 = Array.of(7, 8, 9);           // Creates array from arguments
+let arr4 = Array(5);                    // Creates array with 5 empty slots
+
+console.log(arr1, arr2, arr3, arr4);
+// Output: [1, 2, 3] [4, 5, 6] [7, 8, 9] [ <5 empty items> ]
+
+// 2️⃣ Basic Operations
+let fruits = ["Apple", "Banana"];
+fruits.push("Orange"); // Adds to end
+fruits.pop();           // Removes last element
+fruits.unshift("Mango"); // Adds to start
+fruits.shift();         // Removes first element
+console.log(fruits);
+// Output: ["Apple", "Banana"]
+
+// 3️⃣ Iteration over arrays
+let nums = [1, 2, 3, 4];
+// Classic for loop
+for (let i = 0; i < nums.length; i++) console.log(nums[i]);
+// Output: 1 2 3 4
+// for...of loop
+for (let n of nums) console.log(n);
+// Output: 1 2 3 4
+// forEach method
+nums.forEach((val, i) => console.log(`Index ${i}: ${val}`));
+// Output: Index 0: 1, Index 1: 2, Index 2: 3, Index 3: 4
+
+// 4️⃣ Searching in arrays
+let colors = ["red", "blue", "green", "blue"];
+console.log(colors.indexOf("blue"));      // Output: 1
+console.log(colors.lastIndexOf("blue"));  // Output: 3
+console.log(colors.includes("green"));    // Output: true
+console.log(colors.find(c => c.startsWith("b"))); // Output: "blue"
+console.log(colors.findIndex(c => c === "green")); // Output: 2
+
+// 5️⃣ Filtering & Transformation
+let numbers = [5, 10, 15, 20];
+let filtered = numbers.filter(n => n > 10); // Returns numbers > 10
+let doubled = numbers.map(n => n * 2);      // Multiplies each by 2
+let sum = numbers.reduce((acc, n) => acc + n, 0); // Adds all numbers
+let sumRight = numbers.reduceRight((acc, n) => acc + n, 0); // Same but from right
+console.log(filtered, doubled, sum, sumRight);
+// Output: [15, 20] [10, 20, 30, 40] 50 50
+
+// 6️⃣ Sorting & Reversing
+let points = [40, 100, 1, 5, 25, 10];
+points.sort((a, b) => a - b); // Ascending
+points.reverse(); // Descending
+console.log(points);
+// Output: [100, 40, 25, 10, 5, 1]
+
+// 7️⃣ Combining & Slicing arrays
+let a = [1, 2], b = [3, 4];
+let combined = a.concat(b); // Combines arrays
+let part = combined.slice(1, 3); // Extracts part of array
+let spliced = combined.splice(1, 2, "X", "Y"); // Removes and replaces elements
+console.log(combined, part, spliced);
+// Output: [1, "X", "Y", 4] [2, 3] [2, 3]
+
+// 8️⃣ Flattening arrays
+let nested = [1, [2, [3, [4]]]];
+console.log(nested.flat(2));
+// Output: [1, 2, 3, [4]]
+console.log([1, 2, 3].flatMap(n => [n, n * 2]));
+// Output: [1, 2, 2, 4, 3, 6]
+
+// 9️⃣ String Conversion
+let arr = ["Hello", "World"];
+console.log(arr.join(" ")); // Joins with space
+// Output: "Hello World"
+console.log(arr.toString()); // Converts to comma-separated string
+// Output: "Hello,World"
+
+// 🔟 Checking & Type Methods
+console.log(Array.isArray(arr)); // Output: true
+console.log([2, 4, 6].every(n => n % 2 === 0)); // All even? true
+console.log([1, 2, 3].some(n => n > 2)); // Any > 2? true
+
+// 1️⃣1️⃣ Fill & CopyWithin
+let filled = [1, 2, 3, 4].fill(0, 1, 3); // Fill with 0 from index 1 to 2
+console.log(filled);
+// Output: [1, 0, 0, 4]
+let copyWithinArr = [1, 2, 3, 4, 5];
+copyWithinArr.copyWithin(0, 3, 5); // Copies index 3-4 to start
+console.log(copyWithinArr);
+// Output: [4, 5, 3, 4, 5]
+
+// 1️⃣2️⃣ Spread & Rest
+let arrSpread = [1, 2, 3];
+let arrClone = [...arrSpread]; // Shallow copy
+console.log(arrClone);
+// Output: [1, 2, 3]
+function sumAll(...args) { // Rest collects arguments
+    return args.reduce((a, b) => a + b, 0);
+}
+console.log(sumAll(1, 2, 3, 4));
+// Output: 10
+
+// 1️⃣3️⃣ Destructuring
+let [first, second, ...rest] = [10, 20, 30, 40];
+console.log(first, second, rest);
+// Output: 10 20 [30, 40]
+
+// 1️⃣4️⃣ Multi-dimensional Arrays
+let matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+];
+console.log(matrix[1][2]);
+// Output: 6
+
+// 1️⃣5️⃣ Shallow vs Deep Copy
+let original = [{ a: 1 }, { b: 2 }];
+let shallowCopy = [...original]; // Same inner objects
+let deepCopy = JSON.parse(JSON.stringify(original)); // Fully new copy
+original[0].a = 99;
+console.log(shallowCopy, deepCopy);
+// Output: [ { a: 99 }, { b: 2 } ] [ { a: 1 }, { b: 2 } ]
+
+// ===============================
+// 📌 Points to Remember
+// ===============================
+/*
+1. push() and pop() are faster than unshift() and shift() because they don’t re-index the array.
+2. splice() changes the original array; slice() returns a new array.
+3. sort() by default sorts as strings; use a compare function for numbers.
+4. map(), filter(), reduce() do not change the original array (reduce returns a single value).
+5. Methods can be chained (arr.filter().map()).
+6. Spread (...) copies arrays but only shallowly.
+7. flat() removes nested levels; flatMap() maps and flattens in one step.
+8. Always use Array.isArray() to check if a value is an array.
+9. Destructuring with rest parameter helps in splitting arrays.
+10. fill() and copyWithin() change the array in place.
+*/
