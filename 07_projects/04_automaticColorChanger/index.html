@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: rgb(61, 58, 58);
+            color: white;
+            text-align: center;
+        }
+
+        button {
+            background-color: rgba(0,0,0,0.3);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 20px;
+            margin-left: 15px;
+        }
+
+        button:hover {
+            background-color: rgb(100, 95, 95);
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Automatic Color Changer</h1>
+    <p>This project automatically changes the background color of the webpage.</p>
+
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+
+    <div id="displayName"></div>
+
+    <script>
+        const randomColor = function() {
+            const hex = '0123456789ABCDEF';
+            let color = '#';
+            for(let i=0; i<6; i++) {
+                color += hex[Math.floor(Math.random() * 16)];
+            }
+
+            return color;
+        };
+
+    
+        let intervalId;
+        document.querySelector('#start').addEventListener('click', startChangingColor);
+
+        function startChangingColor() {
+            if(!intervalId) {
+                intervalId = setInterval(changeBackgroundColor, 1000);
+            }
+
+            function changeBackgroundColor() {
+                document.body.style.backgroundColor = randomColor();
+            }
+        }
+
+        document.querySelector('#stop').addEventListener('click', stopChangingColor);
+
+        function stopChangingColor() {
+            clearInterval(intervalId);
+            intervalId = null;
+        }
+
+    </script>
+</body>
+</html>
