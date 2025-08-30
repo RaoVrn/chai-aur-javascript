@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+
+  <style>
+    /* General Page */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: linear-gradient(135deg, #2c3e50, #4ca1af);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Container Card */
+    .container {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      width: 350px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 28px;
+      letter-spacing: 1px;
+    }
+
+    /* Input and Button Row */
+    .input-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    #inputTask {
+      flex: 1;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 30px;
+      outline: none;
+      font-size: 16px;
+    }
+
+    button {
+      background: #3498db;
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      font-size: 15px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #2980b9;
+    }
+
+    /* Task List */
+    #taskList {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #taskList li {
+      background: rgba(255, 255, 255, 0.15);
+      margin-bottom: 12px;
+      padding: 10px 15px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 16px;
+      transition: transform 0.2s;
+    }
+
+    #taskList li:hover {
+      transform: translateX(5px);
+    }
+
+    #taskList li button {
+      background: #e74c3c;
+      font-size: 14px;
+      padding: 6px 12px;
+      border-radius: 20px;
+    }
+
+    #taskList li button:hover {
+      background: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>To-Do List</h1>
+
+    <div class="input-group">
+      <input type="text" id="inputTask" placeholder="Enter a task">
+      <button onclick="addTask()">Add</button>
+    </div>
+
+    <ul id="taskList"></ul>
+  </div>
+
+  <script>
+    let tasks = [];
+
+    function addTask() {
+      let input = document.getElementById("inputTask");
+      let task = input.value.trim();
+
+      if (task !== "") {
+        tasks.push(task);
+        input.value = "";
+        renderTasks();
+      }
+    }
+
+    function removeTask(index) {
+      tasks.splice(index, 1);
+      renderTasks();
+    }
+
+    function renderTasks() {
+      let list = document.getElementById("taskList");
+      list.innerHTML = "";
+
+      tasks.forEach((task, index) => {
+        list.innerHTML += `
+          <li>
+            <span>${task}</span>
+            <button onclick="removeTask(${index})">Remove</button>
+          </li>`;
+      });
+    }
+  </script>
+</body>
+</html>
