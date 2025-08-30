@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            margin: o;
+            padding: 0;
+            background-color: #434343;
+            color: #efefef;
+            text-align: center;
+        }
+
+        button {
+            cursor: pointer;
+            background-color: #606060;
+            border: none;
+            color: #efefef;
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #505050;
+        }
+    </style>
+</head>
+<body>
+    <h1>Counter</h1>
+    
+    <div>
+        <button id="dec">-</button>
+        <span id="counter">0</span>
+        <button id="inc">+</button>
+    </div>
+
+    <script>
+        let counter = document.querySelector('#counter');
+        document.querySelector('#dec').addEventListener('click', decreaseCount);
+        function decreaseCount() {
+            counter.textContent = parseInt(counter.textContent) - 1;
+        }
+
+        document.querySelector('#inc').addEventListener('click', increaseCount);
+        function increaseCount() {
+            counter.textContent = parseInt(counter.textContent) + 1;
+        }
+
+    </script>
+</body>
+</html> 
