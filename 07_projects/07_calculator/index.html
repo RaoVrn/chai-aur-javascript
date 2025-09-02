@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #212121;
+            color: aliceblue;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .input {
+            border-radius: 5px;
+            height: 1.5rem;
+            width: 5rem;
+            margin: 5px;
+        }
+
+        #container {
+            border: 2px solid whitesmoke;
+            border-radius: 10px;
+            width: fit-content;
+            height: fit-content;
+            padding: 15px;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-bottom: 40px;
+        }
+
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .op {
+            border-radius: 5px;
+            height: 25px;
+            width: 25px;
+            text-align: center;
+        }
+
+        #result {
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simple Calculator</h1>
+
+    <div class="wrapper">
+        <div id="container">
+        <p>Enter the First Number: <input type="number" class="input" id="firstNumber" placeholder="eg: 10"></p>
+        
+        <p>Enter the Second Number: <input type="number" class="input" id="secondNumber" placeholder="eg: 20"></p>
+
+        <button class="op" id="+">+</button>
+        <button class="op" id="-">-</button>
+        <button class="op" id="*">*</button>
+        <button class="op" id="/">/</button>
+        <button class="op" id="%">%</button>
+
+        <div id="result"></div>
+    </div>
+    </div>
+    
+
+    
+
+
+    <script>
+        let result = document.getElementById('result');
+
+        let operatorButtons = document.querySelectorAll('.op');
+
+        operatorButtons.forEach(button => {
+            button.addEventListener('click', function() {
+            let num1 = Number(document.getElementById('firstNumber').value);
+            let num2 = Number(document.getElementById('secondNumber').value);
+            let op = this.id;
+            let res;
+
+            switch(op) {
+            case '+':
+                res = num1 + num2;
+                break;
+            
+            case "-":
+                res = num1 - num2;
+                break;
+
+            case '*':
+                res = num1 * num2;
+                break;
+
+            case '/':
+                res = (num1 > num2) ? num1/num2 : "num1 is smaller than num2";
+                break;
+
+            case '%':
+                res = num1 % num2;
+                break;
+
+            default:
+                res = "Enter a valid operator: ";
+        }
+
+        result.textContent = "Result: " + res;
+        });
+    });
+    </script>
+</body>
+</html>
