@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #212121;
+            color: whitesmoke;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #inputNumber {
+            border-radius: 7px;
+            height: 25px;
+            background-color: #565454;
+            cursor: text;
+            color: whitesmoke;
+            border: none;
+            outline: none;
+            transition: background 0.2s ease-in-out;
+        }
+
+        #inputNumber:hover {
+            background-color: #474545;
+        }
+
+        #submit {
+            border-radius: 7px;
+            height: 25px;
+            cursor: pointer;
+            background-color: #565454;
+            color: whitesmoke;
+            border: none;
+            outline: none;
+            padding: 0 15px;
+            font-size: 14px;
+            transition: background 0.2s ease-in-out;
+        }
+
+        #submit:hover {
+            background-color: #474545;
+        }
+
+        #container {
+            border: 2px solid white;
+            border-radius: 10px;
+            outline: none;
+            width: fit-content;
+            height: fit-content;
+            padding: 15px;
+            margin: 50px auto;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Guess the Number</h1>
+
+    <div id="container">
+        <p>Guess the Number(1-10): <input type="number" id="inputNumber" placeholder="eg: 7"></p>
+        <button id="submit">Submit</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        let random = Math.floor(Math.random() * 10) + 1;
+        let submit = document.getElementById('submit');
+        let res = document.getElementById('result');
+
+        submit.addEventListener('click', function() {
+            let input = Number(document.getElementById('inputNumber').value);
+
+            if(input < 1 || input > 10) {
+                res.textContent = "Enter a number between 1 and 10 !!";
+            } else if(input > random) {
+                res.textContent = "Try Smaller Number...";
+            } else if(input < random) {
+                res.textContent = "Try entrying a bigger number...";
+            } else {
+                res.textContent = "Correct!";
+            }
+
+            console.log("Random: " + random + " | Your Guess: " + input);
+        })
+    </script>
+</body>
+</html>
